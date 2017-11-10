@@ -1,0 +1,15 @@
+{
+  "name": "server",
+  "version": "1.0.0",
+  "description": "SJ foundation API server",
+  "main": "start.js",
+  "license": "MIT",
+  "scripts": {
+    "start": "nodemon start.js | bunyan -o short --color"
+  },
+  "dependencies": {
+    "bunyan": "^1.8.12",
+    "restify": "^6.3.1",
+    "restify-errors": "^5.0.0"
+  }
+}
