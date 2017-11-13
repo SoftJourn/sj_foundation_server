@@ -1,0 +1,48 @@
+[
+    {
+        "name" : "projects",
+        "description" : "Projects resource",
+        "handler" : "projects",
+        "endpoints" : {
+            "get /" : "getAll",
+            "get /:id" : "getById",
+            "post /" : "create",
+            "put /:id" : "update",
+            "del /:id" : "delete"
+        },
+        "resources" : [
+            {
+                "name" : "comments",
+                "description" : "Comments resource",
+                "handler" : "comments",
+                "endpoints" : {
+                    "get /" : "getAll",
+                    "get /:id" : "getById",
+                    "post /" : "create",
+                    "put /:id" : "update",
+                    "del /:id" : "delete"
+                }
+            }
+        ]
+    },
+    {
+        "name" : "users",
+        "description" : "Users resource",
+        "handler" : "users",
+        "endpoints" : {
+            "get /" : "getAll",
+            "get /:id" : "getById",
+            "post /" : "create",
+            "put /:id" : "update",
+            "del /:id" : "delete"
+        }
+    },
+    {
+        "name" : "search",
+        "description" : "Search route",
+        "handler" : "search",
+        "endpoints" : {
+            "get /" : "search"
+        }
+    }
+]

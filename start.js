@@ -3,6 +3,7 @@ const restify = require('restify');
 const plugins = restify.plugins;
 const errs = require('restify-errors');
 const logger = require('./services/logger');
+const middleware = require('./middleware');
 
 // Initialize Server
 const server = restify.createServer();
@@ -13,7 +14,7 @@ const server = restify.createServer();
 server.pre(restify.plugins.pre.dedupeSlashes());
 
 // log requests
-server.use(function(req, res, next) {
+server.use((req, res, next) => {
   logger.info({
     method: req.method, 
     path: req.url, 
@@ -28,6 +29,9 @@ server.use(plugins.queryParser({ mapParams: true }));
 server.use(plugins.fullResponse());
 
 // Start server
-server.listen(config.port, function() {
+server.listen(config.port, () => {
   logger.info('Server listening at port', config.port);
 });
+
+// Init middleware
+middleware.init(server);
