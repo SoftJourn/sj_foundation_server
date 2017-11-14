@@ -4,6 +4,7 @@ const plugins = restify.plugins;
 const errs = require('restify-errors');
 const logger = require('./services/logger');
 const middleware = require('./middleware');
+const db = require('./db');
 
 // Initialize Server
 const server = restify.createServer();
@@ -31,6 +32,7 @@ server.use(plugins.fullResponse());
 // Start server
 server.listen(config.port, () => {
   logger.info('Server listening at port', config.port);
+  db.init();
 });
 
 // Init middleware
