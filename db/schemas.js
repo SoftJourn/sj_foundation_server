@@ -7,7 +7,12 @@ const db = require('./').instance;
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 // PROJECT SCHEMA
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
+
 const Projects = db.define('projects', {
+    id : {
+      type: Sequelize.INTEGER,
+      primaryKey: true      
+    },
     title: {
       type: Sequelize.STRING
     },
@@ -39,6 +44,10 @@ const Projects = db.define('projects', {
 // - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 const Comments = db.define('comments', {
+    id : {
+      type: Sequelize.INTEGER,
+      primaryKey: true       
+    },
     text: {
       type: Sequelize.STRING
     }
@@ -50,7 +59,8 @@ const Comments = db.define('comments', {
 
 const Users = db.define('users', {
     id : {
-      type: Sequelize.INTEGER      
+      type: Sequelize.INTEGER,
+      primaryKey: true       
     },
     name: {
       type: Sequelize.STRING
@@ -63,9 +73,10 @@ const Users = db.define('users', {
 
 const Categories = db.define('categories', {
     id : {
-      type: Sequelize.INTEGER      
+      type: Sequelize.INTEGER,
+      primaryKey: true       
     },
-    name : {
-      name: Sequelize.STRING
+    name: {
+      type: Sequelize.STRING
     }
 });
