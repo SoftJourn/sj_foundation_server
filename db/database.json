@@ -1,0 +1,26 @@
+{
+  "development": {
+    "username": "root",
+    "password": null,
+    "database": "foundation",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationStorage": "json"
+  },
+  "test": {
+    "username": "root",
+    "password": null,
+    "database": "foundation_test",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationStorage": "json"
+  },
+  "production": {
+    "username": "root",
+    "password": null,
+    "database": "foundation_production",
+    "host": "127.0.0.1",
+    "dialect": "mysql",
+    "migrationStorage": "json"
+  }
+}

@@ -2,7 +2,6 @@ const _ = require('underscore');
 const _resources = require('./resources');
 const logger = require('./services/logger');
 const handlers = require('./handlers');
-const models = require('./db/schemas');
 
 const initRoute = (server, resources, parent) => {
     parent = parent || '';

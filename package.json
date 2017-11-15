@@ -13,6 +13,7 @@
     "restify": "^6.3.1",
     "restify-errors": "^5.0.0",
     "sequelize": "^4.22.6",
+    "sequelize-cli": "^3.0.0",
     "underscore": "^1.8.3"
   }
 }

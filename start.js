@@ -4,7 +4,7 @@ const plugins = restify.plugins;
 const errs = require('restify-errors');
 const logger = require('./services/logger');
 const middleware = require('./middleware');
-const db = require('./db');
+const db = require('./db/models');
 
 // Initialize Server
 const server = restify.createServer();
@@ -30,9 +30,15 @@ server.use(plugins.queryParser({ mapParams: true }));
 server.use(plugins.fullResponse());
 
 // Start server
-server.listen(config.port, () => {
+server.listen(config.port, async () => {
   logger.info('Server listening at port', config.port);
-  db.init();
+
+  try {
+    await db.sequelize.authenticate();
+    logger.info('Connection to database has been established successfully.');
+  } catch (err) {
+    logger.error('Unable to connect to the database:', err);
+  }
 });
 
 // Init middleware
