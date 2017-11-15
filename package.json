@@ -7,7 +7,8 @@
   "scripts": {
     "start": "nodemon start.js | bunyan -o short --color",
     "createDb": "node_modules/.bin/sequelize db:create",
-    "migrateDb": "node_modules/.bin/sequelize db:migrate"
+    "migrateDb": "node_modules/.bin/sequelize db:migrate",
+    "seedDb": "node_modules/.bin/sequelize db:seed:all"
   },
   "dependencies": {
     "bunyan": "^1.8.12",
