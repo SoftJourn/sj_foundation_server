@@ -1,20 +1,22 @@
+const models = require('../models');
+const logger = require('../services/logger');
 
 exports.getAll = (params) => {
-    return 'Get all projects'; 
+    return models.projects.getAll(params); 
 };
     
 exports.getById = (params) => {
-    return 'Get certain project';
+    return models.projects.getById(params); 
 };
     
 exports.create = (params) => {
-    return 'Create project';
+    return models.projects.create(params); 
 };
     
 exports.update = (params) => {
-    return 'Update certain project'; 
+    return models.projects.update(params); 
 };
     
 exports.delete = (params) => {
-    return 'Delete certain project';
+    return models.projects.delete(params); 
 };

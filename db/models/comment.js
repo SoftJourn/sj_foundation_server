@@ -1,6 +1,6 @@
 'use strict';
 module.exports = (sequelize, DataTypes) => {
-  let Comment = sequelize.define('Comment', {
+  let Comment = sequelize.define('comments', {
     text: DataTypes.STRING
   }, {
     classMethods: {

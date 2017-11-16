@@ -5,7 +5,10 @@
     "database": "foundation",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "migrationStorage": "json"
+    "migrationStorage": "json",
+    "query": {
+      "raw":true
+    }
   },
   "test": {
     "username": "root",
@@ -13,7 +16,10 @@
     "database": "foundation_test",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "migrationStorage": "json"
+    "migrationStorage": "json",
+    "query": {
+      "raw":true
+    }
   },
   "production": {
     "username": "root",
@@ -21,6 +27,9 @@
     "database": "foundation_production",
     "host": "127.0.0.1",
     "dialect": "mysql",
-    "migrationStorage": "json"
+    "migrationStorage": "json",
+    "query": {
+      "raw":true
+    }
   }
 }
