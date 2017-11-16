@@ -6,6 +6,6 @@ const Categories = require('./categories');
 module.exports = {
     projects : new Projects(),
     // comments : new Comments(),
-    // users : new Users(),
+    users : new Users(),
     // categories : new Categories()
 };

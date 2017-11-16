@@ -1,20 +1,22 @@
+const models = require('../models');
+const logger = require('../services/logger');
 
 exports.getAll = (params) => {
-    return 'Get all users'; 
+    return models.users.getAll(params); 
 };
     
 exports.getById = (params) => {
-    return 'Get certain user';
+    return models.users.getById(params); 
 };
     
 exports.create = (params) => {
-    return 'Create user';
+    return models.users.create(params); 
 };
     
 exports.update = (params) => {
-    return 'Update certain user'; 
+    return models.users.update(params); 
 };
     
 exports.delete = (params) => {
-    return 'Delete certain user';
+    return models.users.delete(params); 
 };
