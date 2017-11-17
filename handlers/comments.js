@@ -1,20 +1,22 @@
+const models = require('../models');
+const logger = require('../services/logger');
 
 exports.getAll = (params) => {
-    return 'Get all comments'; 
+    return models.comments.getAll(params); 
 };
     
 exports.getById = (params) => {
-    return 'Get certain comment';
+    return models.comments.getById(params); 
 };
     
 exports.create = (params) => {
-    return 'Create comment';
+    return models.comments.create(params); 
 };
     
 exports.update = (params) => {
-    return 'Update certain comment'; 
+    return models.comments.update(params); 
 };
     
 exports.delete = (params) => {
-    return 'Delete certain comment';
+    return models.comments.delete(params); 
 };
