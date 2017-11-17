@@ -29,4 +29,5 @@ $ ENV=development yarn start
 | Comment | */projects/:id/comments/:id* |
 | User | */users/:id* |
 | Category | */category/:id* |
+
 **TODO**: Need to use [Swagger](https://swagger.io/) for api documentation
