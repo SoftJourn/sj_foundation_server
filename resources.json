@@ -44,5 +44,14 @@
         "endpoints" : {
             "get /" : "search"
         }
+    },
+    {
+        "name" : "categories",
+        "description" : "Categories resource",
+        "handler" : "categories",
+        "endpoints" : {
+            "get /" : "getAll",
+            "get /:id" : "getById"
+        }
     }
 ]

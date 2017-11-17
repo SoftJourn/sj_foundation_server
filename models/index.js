@@ -7,5 +7,5 @@ module.exports = {
     projects : new Projects(),
     comments : new Comments(),
     users : new Users(),
-    // categories : new Categories()
+    categories : new Categories()
 };
