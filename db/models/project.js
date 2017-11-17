@@ -6,9 +6,9 @@ module.exports = (sequelize, DataTypes) => {
     price: DataTypes.FLOAT,
     status: DataTypes.STRING,
     due: DataTypes.DATE,
-    category_id : DataTypes.INTEGER,
-    creator_id : DataTypes.INTEGER,
-    donate_more : DataTypes.BOOLEAN,
+    categoryId : DataTypes.INTEGER,
+    creatorId : DataTypes.INTEGER,
+    donateMore : DataTypes.BOOLEAN,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {

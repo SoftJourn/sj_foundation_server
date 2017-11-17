@@ -23,13 +23,13 @@ module.exports = {
       due: {
         type: Sequelize.DATE
       },
-      category_id : {
+      categoryId : {
         type: Sequelize.INTEGER
       },
-      creator_id : {
+      creatorId : {
         type: Sequelize.INTEGER
       },
-      donate_more : {
+      donateMore : {
         type: Sequelize.BOOLEAN
       },
       createdAt: {
