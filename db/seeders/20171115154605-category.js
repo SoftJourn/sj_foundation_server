@@ -9,7 +9,7 @@ module.exports = {
         updatedAt: '2017-11-15 23:59:59' 
       },
       {
-        name: 'Home',
+        name: 'Ecology',
         createdAt: '2017-11-15 23:59:59',
         updatedAt: '2017-11-15 23:59:59' 
       },
@@ -21,7 +21,7 @@ module.exports = {
       {
         name: 'Health',
         createdAt: '2017-11-15 23:59:59',
-        updatedAt: '2017-11-15 23:59:59' 
+        updatedAt: '2017-11-15 23:59:59'
       }
     ], {});
   },
