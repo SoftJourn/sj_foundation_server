@@ -1,10 +1,16 @@
 'use strict';
+
+const db = require('../../db/models');
+
 module.exports = (sequelize, DataTypes) => {
   let Project = sequelize.define('projects', {
     title: DataTypes.STRING,
-    description: DataTypes.STRING,
+    content: DataTypes.STRING,
+    shortDescription: DataTypes.STRING,
     price: DataTypes.FLOAT,
     status: DataTypes.STRING,
+    thumbUrl: DataTypes.STRING,
+    slug: DataTypes.STRING,
     due: DataTypes.DATE,
     categoryId : DataTypes.INTEGER,
     creatorId : DataTypes.INTEGER,
@@ -14,7 +20,7 @@ module.exports = (sequelize, DataTypes) => {
   }, {
     classMethods: {
       associate: function(models) {
-        // associations can be defined here
+        // Project.hasOne(models.projectStats, { foreignKey: 'projectId', as: 'projectStats' })
       }
     }
   });

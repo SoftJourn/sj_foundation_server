@@ -1,16 +1,57 @@
 'use strict'
-
+const sequelize = require('sequelize');
 const db = require('../db/models');
 const logger = require('../services/logger');
 
+
 class Projects {
-    async getAll() {
-        let res = await db.projects.findAll();
+    async getAll(params) {
+        let res = await db.projects.findAll({raw: false,
+          include: [{
+            model: db.projectStats,
+            as: 'projectStats'
+          },{
+            model: db.categories,
+            as: 'category'
+          }]
+        });
         return res;
     }
 
+    async getByParams(category, sort, status) {
+
+      let params = [];
+      if (category) {
+        params.push(`category.slug = '${category}'`);
+      }
+      if (status) {
+        params.push(`projectStats.donationStatus = '${status}'`);
+      }
+      const where = params.join(' and ');
+
+      let res = await db.projects.findAll({raw: false,
+        where: sequelize.literal(where),
+        include: [{
+          model: db.projectStats,
+          as: 'projectStats'
+        },{
+          model: db.categories,
+          as: 'category'
+        }]
+      });
+      return res;
+    }
+
     async getById(params) {
-        return await db.projects.findById(params.id);
+        return await db.projects.findById(params.id, {raw: false,
+          include: [{
+            model: db.projectStats,
+            as: 'projectStats'
+          },{
+            model: db.categories,
+            as: 'category'
+          }]
+        });
     }
 
     async create(params) {

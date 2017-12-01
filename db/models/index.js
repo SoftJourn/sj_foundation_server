@@ -27,6 +27,26 @@ Object.keys(db).forEach(modelName => {
   }
 });
 
+db['projects'].hasOne(db['projectStats'], {
+  foreignKey: 'projectId',
+  as: 'projectStats'
+});
+
+db['projects'].belongsTo(db['categories'], {
+  foreignKey: 'categoryId',
+  as: 'category'
+});
+
+db['categories'].hasMany(db['projects'], {
+  foreignKey: 'categoryId',
+});
+
+db['projectStats'].belongsTo(db['projects'], {
+  foreignKey: 'projectId',
+});
+
+
+
 db.sequelize = sequelize;
 db.Sequelize = Sequelize;
 

@@ -2,6 +2,7 @@
 module.exports = (sequelize, DataTypes) => {
   let Category = sequelize.define('categories', {
     name: DataTypes.STRING,
+    slug: DataTypes.STRING,
     createdAt: DataTypes.DATE,
     updatedAt: DataTypes.DATE
   }, {
