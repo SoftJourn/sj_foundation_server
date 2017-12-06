@@ -2,7 +2,7 @@
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    return queryInterface.bulkInsert('Comments', [
+    return queryInterface.bulkInsert('comments', [
       { 
         projectId: 6,
         authorId: 2,
@@ -10,14 +10,14 @@ module.exports = {
         createdAt: '2017-11-15 23:59:59',
         updatedAt: '2017-11-15 23:59:59' 
       },
-      { 
+      {
         projectId: 6,
         authorId: 3,
         text: 'Не, хочу щоб народ міг розслабитись',
         createdAt: '2017-11-15 23:59:59',
         updatedAt: '2017-11-15 23:59:59' 
       },
-      { 
+      {
         projectId: 6,
         authorId: 4,
         text: 'Ти хочеш свою приставку продати?',
@@ -35,6 +35,6 @@ module.exports = {
   },
 
   down: (queryInterface, Sequelize) => {
-    return queryInterface.bulkDelete('Comments', null, {});
+    return queryInterface.bulkDelete('comments', null, {});
   }
 };

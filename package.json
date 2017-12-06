@@ -8,7 +8,9 @@
     "start": "nodemon start.js | bunyan -o short --color",
     "createDb": "node_modules/.bin/sequelize db:create",
     "migrateDb": "node_modules/.bin/sequelize db:migrate",
-    "seedDb": "node_modules/.bin/sequelize db:seed:all"
+    "seedDb": "node_modules/.bin/sequelize db:seed:all",
+    "dropDb": "node_modules/.bin/sequelize db:drop",
+    "reloadDb": "npm run dropDb && npm run createDb && npm run migrateDb && npm run seedDb"
   },
   "dependencies": {
     "bunyan": "^1.8.12",
