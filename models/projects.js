@@ -29,7 +29,7 @@ class Projects {
 
         // find projects db query
         let res = await db.projects.findAll({
-            limit: params.limit*1,
+            limit: params.limit*1 || params.limit,
             raw: false,
             include: [{
                 model: db.projectStats,
