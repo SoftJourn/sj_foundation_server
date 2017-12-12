@@ -15,17 +15,17 @@ class Users {
 
     async create(params) {
         await db.users.create(params);
-        return {success: true};
+        return { success: true };
     }
 
     async update(params) {
-        await db.users.update(params, {where : {id : params.id}});
-        return {success: true};
+        await db.users.update(params, { where: { id: params.id } });
+        return { success: true };
     }
 
     async delete(params) {
-        await db.users.destroy({where : {id : params.id}});
-        return {success: true};
+        await db.users.destroy({ where: { id: params.id } });
+        return { success: true };
     }
 }
 

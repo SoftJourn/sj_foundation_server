@@ -1,24 +1,24 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "SJ foundation API server",
-  "main": "start.js",
-  "license": "MIT",
-  "scripts": {
-    "start": "nodemon start.js | bunyan -o short --color",
-    "createDb": "node_modules/.bin/sequelize db:create",
-    "migrateDb": "node_modules/.bin/sequelize db:migrate",
-    "seedDb": "node_modules/.bin/sequelize db:seed:all",
-    "dropDb": "node_modules/.bin/sequelize db:drop",
-    "reloadDb": "npm run dropDb && npm run createDb && npm run migrateDb && npm run seedDb"
-  },
-  "dependencies": {
-    "bunyan": "^1.8.12",
-    "mysql2": "^1.5.0",
-    "restify": "^6.3.1",
-    "restify-errors": "^5.0.0",
-    "sequelize": "^4.22.6",
-    "sequelize-cli": "^3.0.0",
-    "underscore": "^1.8.3"
-  }
+    "name": "server",
+    "version": "1.0.0",
+    "description": "SJ foundation API server",
+    "main": "start.js",
+    "license": "MIT",
+    "scripts": {
+        "start": "nodemon start.js | bunyan -o short --color",
+        "createDb": "node_modules/.bin/sequelize db:create",
+        "migrateDb": "node_modules/.bin/sequelize db:migrate",
+        "seedDb": "node_modules/.bin/sequelize db:seed:all",
+        "dropDb": "node_modules/.bin/sequelize db:drop",
+        "reloadDb": "yarn dropDb && yarn createDb && yarn migrateDb && yarn seedDb"
+    },
+    "dependencies": {
+        "bunyan": "^1.8.12",
+        "mysql2": "^1.5.0",
+        "restify": "^6.3.1",
+        "restify-errors": "^5.0.0",
+        "sequelize": "^4.22.6",
+        "sequelize-cli": "^3.0.0",
+        "underscore": "^1.8.3"
+    }
 }

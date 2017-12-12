@@ -15,17 +15,17 @@ class Comments {
 
     async create(params) {
         await db.comments.create(params);
-        return {success: true};
+        return { success: true };
     }
 
     async update(params) {
-        await db.comments.update(params, {where : {id : params.id}});
-        return {success: true};
+        await db.comments.update(params, { where: { id: params.id } });
+        return { success: true };
     }
 
     async delete(params) {
-        await db.comments.destroy({where : {id : params.id}});
-        return {success: true};
+        await db.comments.destroy({ where: { id: params.id } });
+        return { success: true };
     }
 }
 

@@ -28,7 +28,7 @@ const initRoute = (server, resources, parent) => {
                 initRoute(server, resource.resources, _parent);
             }
         }
-    });    
+    });
 }
 
 exports.init = (server) => {

@@ -1,43 +1,43 @@
 {
-  "development": {
-    "username": "root",
-    "password": null,
-    "database": "foundation",
-    "host": "127.0.0.1",
-    "port": "3306",
-    "dialect": "mysql",
-    "migrationStorage": "json",
-    "charset": "utf8",
-    "collate": "utf8_unicode_ci",
-    "query": {
-      "raw":true
+    "development": {
+        "username": "root",
+        "password": null,
+        "database": "foundation",
+        "host": "127.0.0.1",
+        "port": "3306",
+        "dialect": "mysql",
+        "migrationStorage": "json",
+        "charset": "utf8",
+        "collate": "utf8_unicode_ci",
+        "query": {
+            "raw": true
+        }
+    },
+    "test": {
+        "username": "sj_foundation",
+        "password": "sj_foundation",
+        "database": "foundation",
+        "host": "jenkins.softjourn.if.ua",
+        "port": "3306",
+        "dialect": "mysql",
+        "migrationStorage": "json",
+        "charset": "utf8",
+        "collate": "utf8_unicode_ci",
+        "query": {
+            "raw": true
+        }
+    },
+    "production": {
+        "username": "root",
+        "password": null,
+        "database": "foundation_production",
+        "host": "127.0.0.1",
+        "dialect": "mysql",
+        "migrationStorage": "json",
+        "charset": "utf8",
+        "collate": "utf8_unicode_ci",
+        "query": {
+            "raw": true
+        }
     }
-  },
-  "test": {
-    "username": "sj_foundation",
-    "password": "sj_foundation",
-    "database": "foundation",
-    "host": "jenkins.softjourn.if.ua",
-    "port": "3306",
-    "dialect": "mysql",
-    "migrationStorage": "json",
-    "charset": "utf8",
-    "collate": "utf8_unicode_ci",
-    "query": {
-      "raw":true
-    }
-  },
-  "production": {
-    "username": "root",
-    "password": null,
-    "database": "foundation_production",
-    "host": "127.0.0.1",
-    "dialect": "mysql",
-    "migrationStorage": "json",
-    "charset": "utf8",
-    "collate": "utf8_unicode_ci",
-    "query": {
-      "raw":true
-    }
-  }
 }
