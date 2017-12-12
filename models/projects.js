@@ -1,45 +1,44 @@
-'use strict'
-const sequelize = require('sequelize');
+// 'use strict'
+
 const db = require('../db/models');
 const logger = require('../services/logger');
+const helper = require('../services/helper');
+const Op = db.Sequelize.Op;
 
+
+console.log('helper: ', helper.splitQuery);
 
 class Projects {
     async getAll(params) {
+        // form 'where' query
+        let where = {};
+        if (params.category) {
+            where.category = {
+                slug: {
+                    [Op.or]: helper.split(params.category)
+                }
+            }
+        }
+        if (params.status) {
+            where.status = {
+                donationStatus: {
+                    [Op.or]: helper.split(params.status)
+                }
+            }
+        }
+
+        // find projects db query
         let res = await db.projects.findAll({
+            limit: params.limit*1,
             raw: false,
             include: [{
                 model: db.projectStats,
-                as: 'projectStats'
+                as: 'projectStats',
+                where: where.status
             }, {
                 model: db.categories,
-                as: 'category'
-            }]
-        });
-        return res;
-    }
-
-    // TODO: need to remove 'getByParams' logic into 'project' resource models
-    async getByParams(category, sort, status) {
-
-        let params = [];
-        if (category) {
-            params.push(`category.slug = '${category}'`);
-        }
-        if (status) {
-            params.push(`projectStats.donationStatus = '${status}'`);
-        }
-        const where = params.join(' and ');
-
-        let res = await db.projects.findAll({
-            raw: false,
-            where: sequelize.literal(where),
-            include: [{
-                model: db.projectStats,
-                as: 'projectStats'
-            }, {
-                model: db.categories,
-                as: 'category'
+                as: 'category',
+                where: where.category
             }]
         });
         return res;

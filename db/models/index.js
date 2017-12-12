@@ -27,6 +27,8 @@ Object.keys(db).forEach(modelName => {
     }
 });
 
+// TODO: move next associations into associate block
+
 db['projects'].hasOne(db['projectStats'], {
     foreignKey: 'projectId',
     as: 'projectStats'

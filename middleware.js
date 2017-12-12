@@ -34,5 +34,3 @@ const initRoute = (server, resources, parent) => {
 exports.init = (server) => {
     initRoute(server, _resources);
 };
-
-
