@@ -4,9 +4,7 @@ const db = require('../db/models');
 const logger = require('../services/logger');
 const helper = require('../services/helper');
 const Op = db.Sequelize.Op;
-
-
-console.log('helper: ', helper.splitQuery);
+const slug = require('slug')
 
 class Projects {
     async getAll(params) {
@@ -58,6 +56,9 @@ class Projects {
     }
 
     async create(params) {
+        // generate slug:
+        params.slug = slug(params.title, {lower: true});
+
         await db.projects.create(params);
         return { success: true };
     }
