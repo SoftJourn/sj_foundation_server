@@ -46,6 +46,14 @@
         }
     },
     {
+        "name" : "auth",
+        "description": "Login",
+        "handler" : "auth",
+        "endpoints" : {
+            "post /" : "login"
+        }
+    },
+    {
         "name" : "categories",
         "description" : "Categories resource",
         "handler" : "categories",
