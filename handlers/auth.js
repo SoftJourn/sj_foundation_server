@@ -8,13 +8,35 @@ function ldapAuth(username, password) {
         });
 
         client.bind(dn, password, (err) => {
-            client.unbind();
             if (err === null) {
-                resolve({ success : true, username: username });
-                return;
+                var ops = {
+                    filter: '(uid=' + username + ')',
+                    scope: 'sub'
+                }
+                var base = 'ou=People,ou=Users,dc=ldap,dc=sjua';
+                var userFullName = '';
+                client.search(base, ops, (err, res) => {
+                    if (err) {
+                        reject({ notAllowed: true });
+                    } else {
+                        res.on('searchEntry', function (entry) {
+                            console.log('Entry', JSON.stringify(entry.object));
+                            userFullName = entry.object.cn;
+                        });
+                        res.on('error', function (err) {
+                            console.log('Error is', err);
+                            client.unbind();
+                            reject({ notAllowed: true });
+                        });
+                        res.on('end', function (result) {
+                            client.unbind();
+                            resolve({ success : true, username: userFullName });
+                        });
+                    }
+                });
+            } else {
+                reject({ notAllowed: true });
             }
-
-            reject({ notAllowed: true });
         });
     });
 }
