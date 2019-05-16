@@ -18,7 +18,11 @@ const initRoute = (server, resources, parent) => {
                     res.send(result ? 200 : 404, result || 'Resource not found');
                 } catch (err) {
                     logger.error(err);
-                    res.send(500, 'Oops! Something went wrong..');
+                    if (err.notAllowed) {
+                        res.send(401, 'User or password is incorrect');
+                    } else {
+                        res.send(500, 'Oops! Something went wrong..');
+                    }
                 }
                 next();
             });
