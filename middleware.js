@@ -2,6 +2,17 @@ const _ = require('underscore');
 const _resources = require('./resources');
 const logger = require('./services/logger');
 const handlers = require('./handlers');
+const multer = require('multer');
+var storage = multer.diskStorage({
+    destination: function (req, file, cb) {
+        cb(null, 'uploads/')
+    },
+    filename: function (req, file, cb) {
+        console.log(file);
+        cb(null, file.originalname + '-' + Date.now())
+    }
+})
+const upload = multer({ storage: storage });
 
 const initRoute = (server, resources, parent) => {
     parent = parent || '';
@@ -12,9 +23,14 @@ const initRoute = (server, resources, parent) => {
             let handlerMethod = resource.endpoints[endpoint];
             let parts = endpoint.split(' ');
 
-            server[parts[0]](parent + resource.name + parts[1], async (req, res, next) => {
+            server[parts[0]](parent + resource.name + parts[1], upload.single('file'), async (req, res, next) => {
                 try {
-                    let result = await handlers[resource.name][handlerMethod](req.params);
+                    let result;
+                    if (handlerMethod === 'uploadProjectImage') {
+                        result = await handlers[resource.name][handlerMethod](req);
+                    } else {
+                        result = await handlers[resource.name][handlerMethod](req.params);
+                    }
                     res.send(result ? 200 : 404, result || 'Resource not found');
                 } catch (err) {
                     logger.error(err);

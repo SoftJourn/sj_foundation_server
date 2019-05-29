@@ -20,3 +20,8 @@ exports.update = (params) => {
 exports.delete = (params) => {
     return models.projects.delete(params);
 };
+
+exports.uploadProjectImage = (req) => {
+    console.log(req.file.filename);
+    return { "result": "uploaded" };
+}
