@@ -57,21 +57,22 @@ class Projects {
 
     async create(params) {
         // generate slug:
-        params.slug = slug(params.title, {lower: true});
+        var payload = JSON.parse(params);
+        payload.slug = slug(payload.title, {lower: true});
 
-        await db.categories.find({ where: { name: params.category }})
+        await db.categories.find({ where: { name: payload.category }})
             .then(function (category) {
-                params.categoryId = category.id;
-                db.projects.create(params);
+                payload.categoryId = category.id;
+                db.projects.create(payload);
             });
 
-        db.projects.find({ where: { title: params.title }})
+        db.projects.find({ where: { title: payload.title }})
             .then(function (project) {
                 var stats = {
                     projectId: project.id,
                     donationStatus: 'active',
                     supporters: 0,
-                    canDonate: params.donateMore ? true : false,
+                    canDonate: payload.donateMore ? true : false,
                     raised: 0,
                     createdAt: null,
                     updatedAt: null
