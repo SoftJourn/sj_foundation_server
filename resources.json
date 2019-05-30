@@ -9,7 +9,7 @@
             "post /" : "create",
             "put /:id" : "update",
             "del /:id" : "delete",
-            "post /uploadProjectImage" : "uploadProjectImage"
+            "post /uploadProjectFile" : "uploadProjectFile"
         },
         "resources" : [
             {

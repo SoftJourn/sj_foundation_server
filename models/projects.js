@@ -59,7 +59,26 @@ class Projects {
         // generate slug:
         params.slug = slug(params.title, {lower: true});
 
-        await db.projects.create(params);
+        await db.categories.find({ where: { name: params.category }})
+            .then(function (category) {
+                params.categoryId = category.id;
+                db.projects.create(params);
+            });
+
+        db.projects.find({ where: { title: params.title }})
+            .then(function (project) {
+                var stats = {
+                    projectId: project.id,
+                    donationStatus: 'active',
+                    supporters: 0,
+                    canDonate: params.donateMore ? true : false,
+                    raised: 0,
+                    createdAt: null,
+                    updatedAt: null
+                }
+                db.projectStats.create(stats);
+            });
+
         return { success: true };
     }
 

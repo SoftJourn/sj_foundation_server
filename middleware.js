@@ -25,12 +25,7 @@ const initRoute = (server, resources, parent) => {
 
             server[parts[0]](parent + resource.name + parts[1], upload.single('file'), async (req, res, next) => {
                 try {
-                    let result;
-                    if (handlerMethod === 'uploadProjectImage') {
-                        result = await handlers[resource.name][handlerMethod](req);
-                    } else {
-                        result = await handlers[resource.name][handlerMethod](req.params);
-                    }
+                    let result = await handlers[resource.name][handlerMethod](req.params, req);
                     res.send(result ? 200 : 404, result || 'Resource not found');
                 } catch (err) {
                     logger.error(err);
