@@ -34,7 +34,7 @@ module.exports = {
             },
             updatedAt: {
                 type: Sequelize.DATE(3),
-                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3) ON UPDATE CURRENT_TIMESTAMP(3)'),
+                defaultValue: Sequelize.literal('CURRENT_TIMESTAMP(3)'),
             }
         });
     },

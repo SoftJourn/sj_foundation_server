@@ -57,9 +57,29 @@ class Projects {
 
     async create(params) {
         // generate slug:
-        params.slug = slug(params.title, {lower: true});
+        var payload = JSON.parse(params);
+        payload.slug = slug(payload.title, {lower: true});
 
-        await db.projects.create(params);
+        await db.categories.find({ where: { name: payload.category }})
+            .then(function (category) {
+                payload.categoryId = category.id;
+                db.projects.create(payload);
+            });
+
+        db.projects.find({ where: { title: payload.title }})
+            .then(function (project) {
+                var stats = {
+                    projectId: project.id,
+                    donationStatus: 'active',
+                    supporters: 0,
+                    canDonate: payload.donateMore ? true : false,
+                    raised: 0,
+                    createdAt: null,
+                    updatedAt: null
+                }
+                db.projectStats.create(stats);
+            });
+
         return { success: true };
     }
 

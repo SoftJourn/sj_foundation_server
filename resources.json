@@ -8,7 +8,8 @@
             "get /:id" : "getById",
             "post /" : "create",
             "put /:id" : "update",
-            "del /:id" : "delete"
+            "del /:id" : "delete",
+            "post /uploadProjectFile" : "uploadProjectFile"
         },
         "resources" : [
             {

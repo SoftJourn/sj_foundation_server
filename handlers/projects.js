@@ -9,8 +9,8 @@ exports.getById = (params) => {
     return models.projects.getById(params);
 };
 
-exports.create = (params) => {
-    return models.projects.create(params);
+exports.create = (params, request) => {
+    return models.projects.create(request.body);
 };
 
 exports.update = (params) => {
@@ -20,3 +20,7 @@ exports.update = (params) => {
 exports.delete = (params) => {
     return models.projects.delete(params);
 };
+
+exports.uploadProjectFile = (params) => {
+    return { "result": "uploaded" };
+}
