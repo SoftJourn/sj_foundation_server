@@ -23,4 +23,3 @@ exports.delete = (params) => {
 
 exports.uploadProjectFile = (params, req) => {
     return { "result": "uploaded", "uploadedFile": req.file.filename };
-}

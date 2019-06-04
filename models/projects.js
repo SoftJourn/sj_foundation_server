@@ -66,7 +66,6 @@ class Projects {
         await db.categories.find({ where: { name: payload.category }})
             .then(function (category) {
                 payload.categoryId = category.id;
-                console.log(category);
                 db.projects.create(payload);
             });
 
@@ -86,7 +85,6 @@ class Projects {
                     createdAt: null,
                     updatedAt: null
                 }
-                console.log(stats);
                 db.projectStats.create(stats);
             });
 
