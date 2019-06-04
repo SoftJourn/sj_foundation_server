@@ -5,11 +5,13 @@ const handlers = require('./handlers');
 const multer = require('multer');
 var storage = multer.diskStorage({
     destination: function (req, file, cb) {
-        cb(null, 'uploads/')
+        cb(null, '/app/static/wp-content/uploads')
     },
     filename: function (req, file, cb) {
         console.log(file);
-        cb(null, file.originalname + '-' + Date.now())
+        var fileName = Date.now() + '-' + file.originalname;
+        fileName = fileName.replace(/\s+/g, '_');
+        cb(null, fileName);
     }
 })
 const upload = multer({ storage: storage });
@@ -25,7 +27,7 @@ const initRoute = (server, resources, parent) => {
 
             server[parts[0]](parent + resource.name + parts[1], upload.single('file'), async (req, res, next) => {
                 try {
-                    let result = await handlers[resource.name][handlerMethod](req.params, req);
+                    let result = await handlers[resource.name][handlerMethod](req.params, req, res);
                     res.send(result ? 200 : 404, result || 'Resource not found');
                 } catch (err) {
                     logger.error(err);

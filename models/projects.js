@@ -57,19 +57,28 @@ class Projects {
 
     async create(params) {
         // generate slug:
-        var payload = JSON.parse(params);
+        var payload = params;
         payload.slug = slug(payload.title, {lower: true});
+        payload.thumbUrl = '/wp-content/uploads/' + params.imageUrl;
+
+        console.log(payload.category);
 
         await db.categories.find({ where: { name: payload.category }})
             .then(function (category) {
                 payload.categoryId = category.id;
+                console.log(category);
                 db.projects.create(payload);
             });
 
-        db.projects.find({ where: { title: payload.title }})
+        db.projects
+            .findAll({
+                where: { title: payload.title },
+                order: [ ['createdAt', 'DESC'] ],
+                limit: 1
+            })
             .then(function (project) {
                 var stats = {
-                    projectId: project.id,
+                    projectId: project[0].id,
                     donationStatus: 'active',
                     supporters: 0,
                     canDonate: payload.donateMore ? true : false,
@@ -77,6 +86,7 @@ class Projects {
                     createdAt: null,
                     updatedAt: null
                 }
+                console.log(stats);
                 db.projectStats.create(stats);
             });
 

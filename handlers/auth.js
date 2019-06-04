@@ -1,4 +1,7 @@
 var ldap = require('ldapjs');
+var jwt = require('jsonwebtoken');
+var bcrypt = require('bcryptjs');
+var config = require('../config');
 
 function ldapAuth(username, password) {
     var dn = 'uid=' + username + ',ou=People,ou=Users,dc=ldap,dc=sjua';
@@ -15,13 +18,16 @@ function ldapAuth(username, password) {
                 }
                 var base = 'ou=People,ou=Users,dc=ldap,dc=sjua';
                 var userFullName = '';
+                var token = '';
                 client.search(base, ops, (err, res) => {
                     if (err) {
                         reject({ notAllowed: true });
                     } else {
                         res.on('searchEntry', function (entry) {
-                            console.log('Entry', JSON.stringify(entry.object));
                             userFullName = entry.object.cn;
+                            token = jwt.sign({ id: entry.object.mail }, config.secret, {
+                                expiresIn: 600
+                            });
                         });
                         res.on('error', function (err) {
                             console.log('Error is', err);
@@ -30,7 +36,7 @@ function ldapAuth(username, password) {
                         });
                         res.on('end', function (result) {
                             client.unbind();
-                            resolve({ success : true, username: userFullName });
+                            resolve({ username: userFullName, token: token });
                         });
                     }
                 });
@@ -41,6 +47,6 @@ function ldapAuth(username, password) {
     });
 }
 
-exports.login = (params) => {
-    return ldapAuth(params.username, params.password);
+exports.login = (params, req, res) => {
+    return ldapAuth(params.username, params.password)
 };
