@@ -23,7 +23,7 @@
         "nodemon": "^1.18.10",
         "restify": "^6.3.1",
         "restify-errors": "^5.0.0",
-        "sequelize": "^4.22.6",
+        "sequelize": "^5.15.1",
         "sequelize-cli": "^3.0.0",
         "slug": "^0.9.1",
         "underscore": "^1.8.3"
